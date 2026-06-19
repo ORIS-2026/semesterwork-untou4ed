@@ -1,0 +1,15 @@
+### Получить список своих подписок
+GET {{baseUrl}}/api/v1/subscriptions
+Authorization: Bearer {{token}}
+
+### Получить список своих подписчиков
+GET {{baseUrl}}/api/v1/subscriptions/followers
+Authorization: Bearer {{token}}
+
+### Подписаться на пользователя
+POST {{baseUrl}}/api/v1/subscriptions/{{targetUserId}}
+Authorization: Bearer {{token}}
+
+### Отписаться от пользователя
+DELETE {{baseUrl}}/api/v1/subscriptions/{{targetUserId}}
+Authorization: Bearer {{token}}

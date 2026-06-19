@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: wishlist-service
+  profiles:
+    active: dev
+  web:
+    error:
+      whitelabel:
+        enabled: false

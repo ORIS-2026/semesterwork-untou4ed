@@ -1,0 +1,25 @@
+### Получить список своих групп
+GET {{baseUrl}}/api/v1/groups
+Authorization: Bearer {{token}}
+
+### Создать группу
+POST {{baseUrl}}/api/v1/groups
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "name": "Семья",
+  "description": "Группа для обмена подарками с семьёй"
+}
+
+### Получить детали группы
+GET {{baseUrl}}/api/v1/groups/{{groupId}}
+Authorization: Bearer {{token}}
+
+### Вступить в группу
+POST {{baseUrl}}/api/v1/groups/{{groupId}}/members
+Authorization: Bearer {{token}}
+
+### Покинуть группу
+DELETE {{baseUrl}}/api/v1/groups/{{groupId}}/members
+Authorization: Bearer {{token}}

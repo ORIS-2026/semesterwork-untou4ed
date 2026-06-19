@@ -1,0 +1,15 @@
+sourceSets {
+    main {
+        resources {
+            srcDirs = ['src/main/resources', 'src/main/resources/db']
+        }
+    }
+}
+
+bootJar {
+    enabled = false
+}
+
+jar {
+    enabled = true
+}

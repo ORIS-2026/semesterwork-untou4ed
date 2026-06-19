@@ -1,0 +1,11 @@
+### Поиск пользователей и групп
+GET {{baseUrl}}/api/v1/search?q=иван
+Authorization: Bearer {{token}}
+
+### Поиск по username
+GET {{baseUrl}}/api/v1/search?q=ivan_test
+Authorization: Bearer {{token}}
+
+### Поиск группы по названию
+GET {{baseUrl}}/api/v1/search?q=семья
+Authorization: Bearer {{token}}

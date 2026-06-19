@@ -1,0 +1,29 @@
+### Регистрация нового пользователя
+POST {{baseUrl}}/api/v1/auth/register
+Content-Type: application/json
+
+{
+  "name": "Иван",
+  "surname": "Иванов",
+  "username": "ivan_test",
+  "password": "Password1",
+  "passwordRepeat": "Password1",
+  "number": "+79393147860"
+}
+
+### Запросить SMS-код повторно (registrationId из ответа на register)
+POST {{baseUrl}}/api/v1/auth/send-code
+Content-Type: application/json
+
+{
+  "registrationId": "{{registrationId}}"
+}
+
+### Подтвердить номер телефона и завершить регистрацию
+POST {{baseUrl}}/api/v1/auth/verify
+Content-Type: application/json
+
+{
+  "registrationId": "{{registrationId}}",
+  "code": "12345"
+}

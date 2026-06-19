@@ -1,0 +1,60 @@
+### Получить данные текущего пользователя
+GET {{baseUrl}}/api/v1/users/me
+Authorization: Bearer {{token}}
+
+### Получить пользователя по ID
+GET {{baseUrl}}/api/v1/users/{{userId}}
+Authorization: Bearer {{token}}
+
+### Получить пользователя по username
+GET {{baseUrl}}/api/v1/users/username/ivan_test
+Authorization: Bearer {{token}}
+
+### Обновить профиль (имя и фамилия)
+PATCH {{baseUrl}}/api/v1/users/me/profile
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "name": "Пётр",
+  "surname": "Петров"
+}
+
+### Обновить username
+PATCH {{baseUrl}}/api/v1/users/me/username
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "username": "petr_new"
+}
+
+### Запросить смену email
+PATCH {{baseUrl}}/api/v1/users/me/email
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "email": "newemail@example.com"
+}
+
+### Подтвердить смену email (код из письма)
+POST {{baseUrl}}/api/v1/users/me/email/confirm
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "code": "123456"
+}
+
+### Получить URL для загрузки аватарки
+GET {{baseUrl}}/api/v1/users/me/avatar/upload-url
+Authorization: Bearer {{token}}
+
+### Получить URL для скачивания аватарки
+GET {{baseUrl}}/api/v1/users/me/avatar
+Authorization: Bearer {{token}}
+
+### Удалить аккаунт
+DELETE {{baseUrl}}/api/v1/users/me
+Authorization: Bearer {{token}}

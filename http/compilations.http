@@ -1,0 +1,15 @@
+### Получить ленту подборок
+GET {{baseUrl}}/api/v1/compilations/feed?page=0&size=20
+Authorization: Bearer {{token}}
+
+### Создать подборку в группе
+POST {{baseUrl}}/api/v1/compilations
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "title": "Подарки на Новый год",
+  "description": "Идеи подарков для всей семьи",
+  "groupId": "{{groupId}}",
+  "categoryId": 1
+}

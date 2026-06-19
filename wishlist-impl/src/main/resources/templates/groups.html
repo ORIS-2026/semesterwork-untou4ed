@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Группы</title>
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+</head>
+<body>
+<nav th:replace="~{fragments/nav :: nav}"></nav>
+<div class="page">
+
+    <!-- список групп -->
+    <div id="groups-view">
+        <div class="page-header">
+            <h2>Мои группы</h2>
+            <button id="showCreateBtn" class="btn-primary">+ Создать группу</button>
+        </div>
+
+        <div id="error" class="error hidden"></div>
+
+        <form id="createForm" class="create-form hidden">
+            <h3>Новая группа</h3>
+            <label>Название
+                <input type="text" id="groupName" required>
+            </label>
+            <label>Описание
+                <textarea id="groupDesc" rows="3"></textarea>
+            </label>
+            <div class="form-row">
+                <button type="submit" class="btn-primary">Создать</button>
+                <button type="button" id="cancelCreateBtn">Отмена</button>
+            </div>
+        </form>
+
+        <div id="groups-list" class="card-list"></div>
+
+        <!-- поиск групп -->
+        <div style="margin-top:32px;">
+            <h3>Поиск групп</h3>
+            <form id="searchGroupForm" class="search-bar">
+                <input type="text" id="searchGroupInput" placeholder="Название группы..." required>
+                <button type="submit" class="btn-primary">Найти</button>
+            </form>
+            <div id="search-groups-list" class="card-list"></div>
+        </div>
+    </div>
+
+    <!-- детальная страница группы -->
+    <div id="group-detail-view" class="hidden">
+        <button id="backBtn">← Назад</button>
+        <div class="page-header" style="margin-top:12px;">
+            <h2 id="detail-name"></h2>
+            <div id="detail-actions"></div>
+        </div>
+        <p id="detail-desc" class="muted" style="margin-bottom:16px;"></p>
+
+        <div class="page-header" style="margin-top:8px;">
+            <h3>Подборки группы</h3>
+            <button id="addCompilationBtn" class="btn-primary hidden" onclick="openCompilationModal()">+ Добавить подборку</button>
+        </div>
+        <div id="detail-compilations" class="card-list"></div>
+    </div>
+
+</div>
+
+<!-- модальное окно чтобы создать подборку -->
+<div id="compilationModal" class="modal">
+    <div class="modal-content">
+        <span class="modal-close" onclick="closeCompilationModal()">&times;</span>
+        <h3>Новая подборка</h3>
+        <div id="compilationError" class="error hidden"></div>
+        <form id="addCompilationForm">
+            <input type="hidden" id="compilationGroupId">
+            <label>Название *
+                <input type="text" id="compilationTitle" required>
+            </label>
+            <label>Описание
+                <textarea id="compilationDesc" rows="2"></textarea>
+            </label>
+            <label>Категория *
+                <select id="compilationCategory" required>
+                    <option value="" disabled selected>Выберите категорию</option>
+                </select>
+            </label>
+            <button type="submit" class="btn-primary" style="margin-top:8px;">Создать</button>
+        </form>
+        <p id="compilationSuccess" class="success hidden">Подборка создана!</p>
+    </div>
+</div>
+
+<!-- модальное окно чтобы добавить подарок в подборку -->
+<div id="giftModal" class="modal">
+    <div class="modal-content">
+        <span class="modal-close" onclick="closeGiftModal()">&times;</span>
+        <h3>Добавить подарок</h3>
+        <div id="giftError" class="error hidden"></div>
+        <form id="addGiftForm">
+            <input type="hidden" id="giftOwnerId">
+            <input type="hidden" id="giftOwnerType">
+            <label>Название *
+                <input type="text" id="giftTitle" required>
+            </label>
+            <label>Описание
+                <input type="text" id="giftDesc">
+            </label>
+            <label>Ссылка
+                <input type="url" id="giftLink">
+            </label>
+            <label>Цена
+                <input type="number" id="giftPrice" min="0" step="0.01">
+            </label>
+            <button type="submit" class="btn-primary" style="margin-top:8px;">Добавить</button>
+        </form>
+        <p id="giftSuccess" class="success hidden">Подарок добавлен!</p>
+    </div>
+</div>
+
+<script th:src="@{/js/api.js}"></script>
+<script th:src="@{/js/groups.js}"></script>
+</body>
+</html>

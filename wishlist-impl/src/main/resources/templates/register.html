@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Регистрация</title>
+    <link rel="stylesheet" th:href="@{/css/auth.css}">
+</head>
+<body>
+<div class="container">
+    <h2>Регистрация</h2>
+    <div id="error" class="error hidden"></div>
+    <div id="success" class="success hidden"></div>
+
+    <form id="registerForm">
+        <label>Имя *
+            <input type="text" id="name" required>
+        </label>
+        <label>Фамилия
+            <input type="text" id="surname">
+        </label>
+        <label>Имя пользователя *
+            <input type="text" id="username" required>
+        </label>
+        <label>Номер телефона *
+            <input type="text" id="number" placeholder="+79991234567" required>
+        </label>
+        <label>Пароль *
+            <input type="password" id="password" required>
+        </label>
+        <label>Повторите пароль *
+            <input type="password" id="passwordRepeat" required>
+        </label>
+        <button type="submit">Зарегистрироваться</button>
+    </form>
+
+    <form id="verifyForm" class="hidden">
+        <p id="verifyHint" style="margin-bottom:16px; font-size:14px; color:#555;"></p>
+        <label>Код из СМС
+            <input type="text" id="code" required>
+        </label>
+        <button type="submit">Подтвердить</button>
+        <button type="button" id="resendBtn" style="background:#6b7280; margin-top:8px;">Отправить код повторно</button>
+    </form>
+
+    <p>Уже есть аккаунт? <a href="/login">Войти</a></p>
+</div>
+<script th:src="@{/js/register.js}"></script>
+</body>
+</html>

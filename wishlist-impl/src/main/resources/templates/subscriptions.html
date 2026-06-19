@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Подписки</title>
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+</head>
+<body>
+<nav th:replace="~{fragments/nav :: nav}"></nav>
+<div class="page">
+    <h2>Подписки</h2>
+
+    <div class="tabs" style="margin-bottom:20px;">
+        <button class="tab active" data-tab="my">Мои подписки</button>
+        <button class="tab" data-tab="search">Поиск людей</button>
+    </div>
+
+    <div id="error" class="error hidden"></div>
+
+    <!-- мои подписки -->
+    <div id="my-panel">
+        <div id="my-list" class="card-list"></div>
+        <div id="my-empty" class="muted hidden">Вы ни на кого не подписаны</div>
+    </div>
+
+    <!-- поиск -->
+    <div id="search-panel" class="hidden">
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Имя или @username...">
+            <button id="searchBtn" class="btn-primary">Найти</button>
+        </div>
+        <div id="search-list" class="card-list"></div>
+        <div id="search-empty" class="muted hidden">Никого не найдено</div>
+    </div>
+</div>
+<script th:src="@{/js/api.js}"></script>
+<script th:src="@{/js/subscriptions.js}"></script>
+</body>
+</html>

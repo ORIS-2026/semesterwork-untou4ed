@@ -1,0 +1,47 @@
+### Добавить подарок в вишлист
+POST {{baseUrl}}/api/v1/gifts
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "title": "Наушники Sony WH-1000XM5",
+  "description": "Беспроводные наушники с шумоподавлением",
+  "link": "https://www.sony.com/ru/",
+  "price": 29990.00,
+  "ownerId": "{{wishlistId}}",
+  "ownerType": "WISHLIST"
+}
+
+### Добавить подарок в подборку
+POST {{baseUrl}}/api/v1/gifts
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "title": "Книга «Чистый код»",
+  "description": "Роберт Мартин",
+  "link": "https://www.ozon.ru/",
+  "price": 1500.00,
+  "ownerId": "{{compilationId}}",
+  "ownerType": "COMPILATION"
+}
+
+### Получить подарки из вишлиста
+GET {{baseUrl}}/api/v1/gifts?ownerId={{wishlistId}}&ownerType=WISHLIST
+Authorization: Bearer {{token}}
+
+### Получить подарки из подборки
+GET {{baseUrl}}/api/v1/gifts?ownerId={{compilationId}}&ownerType=COMPILATION
+Authorization: Bearer {{token}}
+
+### Поиск подарков по названию
+GET {{baseUrl}}/api/v1/gifts/search?title=наушники
+Authorization: Bearer {{token}}
+
+### Поиск подарков по диапазону цен
+GET {{baseUrl}}/api/v1/gifts/search?minPrice=1000&maxPrice=10000
+Authorization: Bearer {{token}}
+
+### Поиск подарков с несколькими фильтрами
+GET {{baseUrl}}/api/v1/gifts/search?title=книга&minPrice=500&maxPrice=3000&ownerType=WISHLIST
+Authorization: Bearer {{token}}

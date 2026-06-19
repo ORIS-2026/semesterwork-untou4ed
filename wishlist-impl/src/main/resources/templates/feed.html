@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Лента</title>
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+</head>
+<body>
+<nav th:replace="~{fragments/nav :: nav}"></nav>
+<div class="page">
+    <h2>Лента</h2>
+
+    <!-- Поиск подарков -->
+    <div class="search-gifts-bar">
+        <input type="text"       id="searchTitle"   placeholder="Название подарка..." />
+        <input type="number"     id="searchMinPrice" placeholder="Цена от"  min="0" />
+        <input type="number"     id="searchMaxPrice" placeholder="Цена до"  min="0" />
+        <select id="searchOwnerType">
+            <option value="">Все</option>
+            <option value="WISHLIST">Вишлисты</option>
+            <option value="COMPILATION">Подборки</option>
+        </select>
+        <button id="searchBtn"  class="btn-primary">Найти</button>
+        <button id="searchClearBtn" class="btn-search-clear hidden">✕</button>
+    </div>
+
+    <div id="error" class="error hidden"></div>
+
+    <!-- Результаты поиска (скрыты пока нет запроса) -->
+    <div id="search-panel" class="hidden">
+        <p class="search-results-title">Результаты поиска: <span id="searchResultsCount"></span></p>
+        <div id="search-list" class="card-list"></div>
+    </div>
+
+    <!-- Обычные вкладки (скрываются при активном поиске) -->
+    <div id="feed-tabs-wrapper">
+        <div class="tabs">
+            <button class="tab active" data-tab="wishlists">Вишлисты</button>
+            <button class="tab" data-tab="compilations">Подборки</button>
+        </div>
+
+        <div id="wishlists-panel">
+            <div id="wishlists-list" class="card-list"></div>
+            <button id="wishlists-more" class="btn-more hidden">Загрузить ещё</button>
+        </div>
+
+        <div id="compilations-panel" class="hidden">
+            <div id="compilations-list" class="card-list"></div>
+            <button id="compilations-more" class="btn-more hidden">Загрузить ещё</button>
+        </div>
+    </div>
+</div>
+<script th:src="@{/js/api.js}"></script>
+<script th:src="@{/js/feed.js}"></script>
+</body>
+</html>

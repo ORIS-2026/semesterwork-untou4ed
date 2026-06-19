@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Профиль пользователя</title>
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+</head>
+<body>
+<nav th:replace="~{fragments/nav :: nav}"></nav>
+<div class="page">
+
+    <button id="backBtn" onclick="history.back()">← Назад</button>
+
+    <div id="error" class="error hidden"></div>
+
+    <div id="user-profile" class="hidden">
+        <div style="display:flex; align-items:center; gap:20px; margin-bottom:24px;">
+            <div class="avatar-wrapper" style="flex-shrink:0;">
+                <img id="userAvatarImg" class="avatar-img" src="" alt="Аватар">
+            </div>
+            <div>
+                <h2 id="userDisplayName" style="margin-bottom:4px;"></h2>
+                <div id="userUsername" class="card-sub" style="font-size:15px;"></div>
+            </div>
+            <div style="margin-left:auto;">
+                <button id="subBtn" class="btn-primary">Подписаться</button>
+            </div>
+        </div>
+
+        <div id="wishlist-section" class="hidden">
+            <h3 id="wishlistTitle" style="margin-bottom:8px;"></h3>
+            <p id="wishlistDesc" class="muted" style="margin-bottom:16px;"></p>
+            <div id="gifts-list" class="card-list"></div>
+        </div>
+    </div>
+
+</div>
+
+<script th:src="@{/js/api.js}"></script>
+<script th:src="@{/js/user.js}"></script>
+</body>
+</html>

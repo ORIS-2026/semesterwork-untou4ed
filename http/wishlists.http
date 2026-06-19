@@ -1,0 +1,21 @@
+### Получить вишлист конкретного пользователя по его ID
+GET {{baseUrl}}/api/v1/wishlists/user/{{userId}}
+Authorization: Bearer {{token}}
+
+### Получить ленту вишлистов подписок (страница 0, размер 20)
+GET {{baseUrl}}/api/v1/wishlists/feed?page=0&size=20
+Authorization: Bearer {{token}}
+
+### Получить ленту вишлистов подписок (страница 1)
+GET {{baseUrl}}/api/v1/wishlists/feed?page=1&size=10
+Authorization: Bearer {{token}}
+
+### Обновить свой вишлист
+PATCH {{baseUrl}}/api/v1/wishlists/me
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "title": "Мой обновлённый вишлист",
+  "description": "Список подарков на день рождения"
+}

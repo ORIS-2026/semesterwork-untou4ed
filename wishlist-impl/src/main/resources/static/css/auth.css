@@ -1,0 +1,143 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: sans-serif;
+    background: #f5f5f5;
+    display: flex;
+    justify-content: center;
+    padding: 40px 16px;
+}
+
+.container {
+    background: #fff;
+    padding: 32px;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+h2 {
+    margin-bottom: 24px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+label {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    font-size: 14px;
+    color: #555;
+}
+
+input {
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 15px;
+}
+
+button {
+    padding: 10px;
+    background: #4f46e5;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 15px;
+    cursor: pointer;
+    margin-top: 8px;
+}
+
+button:hover {
+    background: #4338ca;
+}
+
+p {
+    margin-top: 16px;
+    font-size: 14px;
+    color: #555;
+}
+
+.error {
+    white-space: pre-line;
+    background: #fee2e2;
+    color: #991b1b;
+    padding: 10px 12px;
+    border-radius: 4px;
+    margin-bottom: 16px;
+    font-size: 14px;
+}
+
+.success {
+    background: #dcfce7;
+    color: #166534;
+    padding: 10px 12px;
+    border-radius: 4px;
+    margin-bottom: 16px;
+    font-size: 14px;
+}
+
+.hidden {
+    display: none;
+}
+
+#profile p {
+    margin: 8px 0;
+    font-size: 15px;
+}
+
+/* ── GitHub OAuth кнопка ──────────────────────────────────── */
+.divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 20px 0 12px;
+    color: #aaa;
+    font-size: 13px;
+}
+
+.divider::before,
+.divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: #e5e7eb;
+}
+
+.btn-github {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    padding: 10px 16px;
+    background: #24292f;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 15px;
+    font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.15s;
+    margin-bottom: 16px;
+}
+
+.btn-github:hover {
+    background: #444c56;
+}
+
+.github-icon {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+}

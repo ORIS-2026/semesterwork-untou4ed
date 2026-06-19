@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="'Ошибка ' + ${status}">Ошибка</title>
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+    <style>
+        .error-page {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 60vh;
+            text-align: center;
+            padding: 32px 16px;
+        }
+        .error-code {
+            font-size: 80px;
+            font-weight: 700;
+            color: #4f46e5;
+            line-height: 1;
+            margin-bottom: 16px;
+        }
+        .error-title {
+            font-size: 22px;
+            font-weight: 600;
+            color: #111827;
+            margin-bottom: 8px;
+        }
+        .error-desc {
+            font-size: 15px;
+            color: #6b7280;
+            margin-bottom: 32px;
+            max-width: 420px;
+        }
+        .error-path {
+            font-size: 13px;
+            color: #9ca3af;
+            margin-bottom: 32px;
+            font-family: monospace;
+        }
+        .error-actions {
+            display: flex;
+            gap: 12px;
+        }
+    </style>
+</head>
+<body>
+<nav th:replace="~{fragments/nav :: nav}"></nav>
+
+<div class="error-page">
+
+    <div class="error-code" th:text="${status}">500</div>
+
+    <!-- 404 -->
+    <div th:if="${status == 404}">
+        <div class="error-title">Страница не найдена</div>
+        <div class="error-desc">Такой страницы не существует. Возможно, она была удалена или адрес введён неверно.</div>
+    </div>
+
+    <!-- 403 -->
+    <div th:if="${status == 403}">
+        <div class="error-title">Доступ запрещён</div>
+        <div class="error-desc">У вас нет прав для просмотра этой страницы.</div>
+    </div>
+
+    <!-- 401 -->
+    <div th:if="${status == 401}">
+        <div class="error-title">Необходима авторизация</div>
+        <div class="error-desc">Войдите в аккаунт, чтобы продолжить.</div>
+    </div>
+
+    <!-- 5xx -->
+    <div th:if="${status >= 500}">
+        <div class="error-title">Ошибка сервера</div>
+        <div class="error-desc">Что-то пошло не так на нашей стороне. Попробуйте немного позже.</div>
+    </div>
+
+    <!-- Всё остальное -->
+    <div th:if="${status != 404 and status != 403 and status != 401 and status < 500}">
+        <div class="error-title" th:text="${error}">Ошибка</div>
+        <div class="error-desc">Произошла ошибка при обработке запроса.</div>
+    </div>
+
+    <div class="error-path" th:if="${path}" th:text="'Путь: ' + ${path}"></div>
+
+    <div class="error-actions">
+        <a href="/feed" class="btn-primary" style="text-decoration:none; padding:8px 20px; border-radius:4px;">
+            На главную
+        </a>
+        <button onclick="history.back()" style="padding:8px 20px; border-radius:4px; border:1px solid #d1d5db; background:none; cursor:pointer; font-size:14px;">
+            Назад
+        </button>
+    </div>
+
+</div>
+</body>
+</html>

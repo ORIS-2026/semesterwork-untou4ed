@@ -1,0 +1,120 @@
+server:
+  port: 8081
+
+logging:
+  level:
+    ru.itis.security: DEBUG
+    org.springframework.security: DEBUG
+    liquibase: DEBUG
+
+wishlist:
+  security:
+    permit-all:
+      - /api/v1/auth/**
+      - /api/v1/categories
+      - /css/**
+      - /js/**
+      - /swagger-ui/**
+      - /swagger-ui.html
+      - /v3/api-docs/**
+      - /oauth/**
+      - /error
+
+
+spring:
+  datasource:
+    url: jdbc:postgresql://${POSTGRES_HOST}:${POSTGRES_PORT}/${POSTGRES_DB}
+    username: ${POSTGRES_USER}
+    password: ${POSTGRES_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+
+  cache:
+    type: redis
+
+  web:
+    error:
+      whitelabel:
+        enabled: false
+
+#  cloud:
+#    consul:
+#      host: ${CONSUL_HOST}
+#      port: ${CONSUL_PORT}
+#
+#      discovery:
+#        register: true
+#        service-name: user-service
+#
+#        # важно для корректной регистрации
+#        health-check-path: /actuator/health
+#        health-check-interval: 30s
+
+  jpa:
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+  liquibase:
+    enabled: true
+    change-log: classpath:db/changelog/changelog-master.yaml
+
+  data:
+    redis:
+      host: ${REDIS_HOST}
+      port: ${REDIS_PORT}
+      password: ${REDIS_PASSWORD}
+      timeout: 5s
+      lettuce:
+        pool:
+          max-active: 16
+          max-idle: 8
+          min-idle: 2
+          max-wait: 5s
+
+telegram:
+  gateway:
+    token: ${TELEGRAM_GATEWAY_TOKEN}
+
+app:
+  security:
+    pending-registration:
+      secret-key: ${PASSWORD_SECRET_KEY}
+
+  cache:
+    redis:
+      default-ttl: 10m
+      key-prefix: "user-service:"
+      ttl:
+        usersById: 15m
+        usersByUsername: 15m
+        usersMe: 5m
+
+minio:
+  endpoint: ${MINIO_ENDPOINT}
+  access-key: ${MINIO_ROOT_USER}
+  secret-key: ${MINIO_ROOT_PASSWORD}
+  bucket: ${MINIO_BUCKET_NAME}
+  public-url: ${MINIO_ENDPOINT}
+
+
+keycloak:
+  realm: ${KEYCLOAK_REALM_NAME}
+  client-id: ${KEYCLOAK_CLIENT_ID}
+  client-secret: ${KEYCLOAK_CLIENT_SECRET}
+  url: ${KEYCLOAK_URL}
+  frontend-client-id: ${KEYCLOAK_FRONTEND_CLIENT_ID}
+
+phone-verification-code:
+  single-sms-cooldown: ${PHONE_SINGLE_SMS_COOLDOWN} #min, время перед следующим запросом сообщения
+  max-sms-in-total-time: ${PHONE_MAX_SMS_IN_TOTAL_TIME} #5 sms in 10 (total-time) min
+  total-time: ${PHONE_TOTAL_TIME} # 10 min, общее время в течении которого можно запросить 5 смс
+  expiration: ${PHONE_SINGLE_SMS_EXPIRATION} #5 min, время через которое код становится неактивным
+  enter-single-code-attempts: ${PHONE_ENTER_SINGLE_SMS_ATTEMPTS} #количество попыток, чтобы правильно ввести код
+
+github:
+  oauth:
+    client-id: ${GITHUB_CLIENT_ID}
+    client-secret: ${GITHUB_CLIENT_SECRET}
+    redirect-uri: ${GITHUB_REDIRECT_URI:http://localhost:8081/oauth/github/callback}

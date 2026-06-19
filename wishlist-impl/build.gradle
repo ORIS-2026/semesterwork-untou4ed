@@ -1,0 +1,42 @@
+plugins {
+    id 'java'
+}
+
+group = 'ru.itis'
+version = '1.0'
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+dependencies {
+    implementation project(':wishlist-db')
+    implementation project(':wishlist-api')
+
+    implementation project(':wishlist-security-starter')
+    implementation project(':wishlist-logging-starter')
+
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation "org.springframework.boot:spring-boot-starter-liquibase:${liquibaseVersion}"
+    implementation 'org.postgresql:postgresql'
+
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation "org.mapstruct:mapstruct:${mapstructVersion}"
+    annotationProcessor "org.mapstruct:mapstruct-processor:${mapstructVersion}"
+    implementation "org.projectlombok:lombok-mapstruct-binding:0.2.0"
+
+    implementation "io.minio:minio:${minioVersion}"
+    implementation 'org.springframework.boot:spring-boot-starter-cache'
+    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+    implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
+
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+}
+
+test {
+    useJUnitPlatform()
+}

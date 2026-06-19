@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Авторизация через GitHub</title>
+    <link rel="stylesheet" th:href="@{/css/auth.css}">
+</head>
+<body>
+<div class="container"
+     th:data-kc-url="${keycloakUrl}"
+     th:data-kc-realm="${keycloakRealm}"
+     th:data-kc-client="${keycloakClientId}">
+    <h2>Выполняется вход...</h2>
+    <p id="status">Сохраняем данные авторизации</p>
+</div>
+<script>
+    (function () {
+        const container   = document.querySelector('.container');
+        const kcUrl       = container.dataset.kcUrl;
+        const kcRealm     = container.dataset.kcRealm;
+        const kcClient    = container.dataset.kcClient;
+
+        const params       = new URLSearchParams(window.location.search);
+        const accessToken  = params.get('accessToken');
+        const refreshToken = params.get('refreshToken');
+
+        if (!accessToken) {
+            document.getElementById('status').textContent = 'Ошибка авторизации. Перенаправляем...';
+            setTimeout(() => window.location.href = '/login?error=oauth_failed', 2000);
+            return;
+        }
+
+        localStorage.setItem('access_token',  accessToken);
+        localStorage.setItem('refresh_token', refreshToken || '');
+        localStorage.setItem('kc_url',        kcUrl);
+        localStorage.setItem('kc_realm',      kcRealm);
+        localStorage.setItem('kc_client',     kcClient);
+
+        document.getElementById('status').textContent = 'Вход выполнен! Переходим на главную...';
+
+        window.history.replaceState({}, '', '/oauth/success');
+
+        setTimeout(() => window.location.href = '/feed', 800);
+    })();
+</script>
+</body>
+</html>
